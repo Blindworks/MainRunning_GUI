@@ -1,0 +1,22 @@
+<span class="run-card">
+  <div class="run-card-header">
+    <img class="run-card-header-image" src="assets/img/run-tags/{{run.image}}_run.png" alt="run_tag">
+  </div>
+  <div class="run-card-content">
+    <div class="run-card-content-title">
+      {{run.title}}
+    </div>
+    <div class="run-card-content-subtitle">
+      {{run.startTime | date : 'dd.MM.yy - hh:mm '}}
+    </div>
+    <div class="run-card-content-details">
+      <div>{{ run.round }} km</div>
+      <div>{{ run.time }} Minutes</div>
+    </div>
+    <svg-icon src="assets/icons/arrow-clockwise.svg"></svg-icon>
+  </div>
+  <div class="run-card-controls">
+    <button class="btn btn--green">Details</button>
+    <button class="btn btn--grey">Add to trophy</button>
+  </div>
+</span>
