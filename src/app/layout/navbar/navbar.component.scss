@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+
+.menu {
+}
+
+.profile-menu {
+  &-avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+  }
+}
