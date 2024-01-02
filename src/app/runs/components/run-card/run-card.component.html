@@ -7,43 +7,44 @@
     </span>
 
   </div>
-  <div class="run-card-course">
-    <img class="run-card-course-image" src="assets/img/run-tags/{{run.image}}_run.png" alt="run_tag">
-    <div class="run-card-course-progress">
-      <div>Progress</div>
-      <div>
-        <svg-icon src="assets/icons/droplet-fill.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet-fill.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet-half.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
-        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
-        </div>
-    </div>
-  </div>
+  <app-course-progress [run]="run"></app-course-progress>
+
 
   <div class="run-card-content">
-
-
     <div class="run-card-content-title">
       {{run.title}}
     </div>
     <div class="run-card-content-details">
-      <div>{{ run.round }} km</div>
-      <div>{{ run.time }} Minutes</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Distance</th>
+            <th>Time</th>
+            <th>Round</th>
+            <th>Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ run.round }} km</td>
+            <td>{{ run.time }} minutes</td>
+            <td>
+              <ng-template [ngIf]="run.clockwise">
+                <svg-icon src="assets/icons/arrow-clockwise.svg"></svg-icon>
+              </ng-template>
+              <ng-template [ngIf]="!run.clockwise">
+                <svg-icon src="assets/icons/arrow-counterclockwise.svg"></svg-icon>
+              </ng-template>
+            </td>
+            <td>
+              <svg-icon src="assets/icons/progress/cloud-rain-fill.svg"></svg-icon>
+              <svg-icon src="assets/icons/progress/droplet-fill.svg"></svg-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <ng-template [ngIf]="run.clockwise">
-      <svg-icon src="assets/icons/arrow-clockwise.svg"></svg-icon>
-      CW
-    </ng-template>
-    <ng-template [ngIf]="!run.clockwise">
-      <svg-icon src="assets/icons/arrow-counterclockwise.svg"></svg-icon>
-      CCV
-    </ng-template>
+
   </div>
   <div class="run-card-controls">
     <button class="btn btn--green">Details</button>

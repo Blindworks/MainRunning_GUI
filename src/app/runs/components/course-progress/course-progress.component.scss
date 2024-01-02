@@ -1,0 +1,23 @@
+.course-progress {
+  display: flex;
+  justify-content: left;
+  padding: 10px 5px;
+
+  &-image {
+    flex-grow: 1;
+    width: 40%;
+  }
+
+  &-details {
+    margin-left: 10px;
+    flex-grow: 1;
+    font-size: 12px;
+
+    &-icons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+  }
+}
