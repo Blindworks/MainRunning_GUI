@@ -1,19 +1,49 @@
 <span class="run-card">
   <div class="run-card-header">
-    <img class="run-card-header-image" src="assets/img/run-tags/{{run.image}}_run.png" alt="run_tag">
+    <span><img src="https://avatars.githubusercontent.com/u/26135050" class="run-card-header-avatar" alt="profile_picture"></span>
+    <span class="run-card-header-info">
+      <div>{{run.creator}}</div>
+      <div class="run-card-header-info-time">{{run.startTime | date : 'dd.MM.yy \'um\' hh:mm '}}</div>
+    </span>
+
   </div>
+  <div class="run-card-logo">
+    <img class="run-card-logo-image" src="assets/img/run-tags/{{run.image}}_run.png" alt="run_tag">
+    <div class="run-card-logo-progress">
+      <div>Progress</div>
+      <div>
+        <svg-icon src="assets/icons/droplet-fill.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet-fill.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet-half.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
+        <svg-icon src="assets/icons/droplet.svg"></svg-icon>
+        </div>
+    </div>
+  </div>
+
   <div class="run-card-content">
+
+
     <div class="run-card-content-title">
       {{run.title}}
-    </div>
-    <div class="run-card-content-subtitle">
-      {{run.startTime | date : 'dd.MM.yy - hh:mm '}}
     </div>
     <div class="run-card-content-details">
       <div>{{ run.round }} km</div>
       <div>{{ run.time }} Minutes</div>
     </div>
-    <svg-icon src="assets/icons/arrow-clockwise.svg"></svg-icon>
+    <ng-template [ngIf]="run.clockwise">
+      <svg-icon src="assets/icons/arrow-clockwise.svg"></svg-icon>
+      CW
+    </ng-template>
+    <ng-template [ngIf]="!run.clockwise">
+      <svg-icon src="assets/icons/arrow-counterclockwise.svg"></svg-icon>
+      CCV
+    </ng-template>
   </div>
   <div class="run-card-controls">
     <button class="btn btn--green">Details</button>

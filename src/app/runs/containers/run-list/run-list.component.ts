@@ -35,7 +35,7 @@ export class RunListComponent {
       'creator': 'Benedikt Lind',
       'avatar': 'benedikt_lind',
       'round': 5,
-      'clockwise': true,
+      'clockwise': false,
       'image': '5'
     },
     {
@@ -57,7 +57,7 @@ export class RunListComponent {
       'creator': 'Benedikt Lind',
       'avatar': 'benedikt_lind',
       'round': 21,
-      'clockwise': true,
+      'clockwise': false,
       'image': '21'
     },
 

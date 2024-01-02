@@ -3,21 +3,65 @@
     flex-direction: column;
     overflow: hidden;
     background: #f2ffff;
-    width: 200px;
+    width: 400px;
     border: 1px solid #e5e7eb;
     border-radius: 10px;
     //padding: 5px;
 
     &-header {
-        border-radius: 5px;
+        display: flex;
+        padding: 10px;
+        border-bottom: 1px solid #e5e7eb;
+
+        &-avatar {
+            vertical-align: middle;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        &-info {
+            text-align: left;
+            font-weight: bolder;
+            color: #9ca3af;
+            font-size: 17px;
+
+            &-time {
+                margin-top: 5px;
+                text-align: left;
+                font-weight: bolder;
+                color: #1f2937;
+                font-size: 10px;
+            }
+        }
+    }
+
+    &-logo {
+        display: flex;
+        justify-content: left;
+        padding-top: 10px;
+
         &-image {
-            width: 100%;
+            width: 50%;
+        }
+
+        &-progress {
+            margin-left: 5px;
         }
     }
 
     &-content {
         padding: 5px;
         color: #1f2937;
+
+        &-user-details {
+            text-align: center;
+            font-weight: bolder;
+            color: #9ca3af;
+            font-size: 10px;
+        }
+
         &-title {
             text-align: center;
             font-weight: bolder;
@@ -27,7 +71,7 @@
             text-align: center;
             font-weight: bolder;
             color: #9ca3af;
-            font-size: 11px;
+            font-size: 10px;
         }
         &-details {
             margin-top: 10px;
