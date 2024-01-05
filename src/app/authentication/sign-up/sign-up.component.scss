@@ -11,12 +11,12 @@
   width: 400px;
 
   &-head {
-
     h2 {
       text-align: center;
     }
     p {
       text-align: center;
+      color: #9ca3af;
     }
 
     &-or-ruler {
@@ -94,6 +94,7 @@
 
 .signin-link {
   margin-top: 20px;
+  color: #9ca3af;
   a {
     color: #71d600;
   }
