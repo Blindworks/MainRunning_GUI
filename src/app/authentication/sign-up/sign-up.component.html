@@ -1,0 +1,80 @@
+<div class="signup">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="signup-form">
+    <div class="signup-form-head">
+      <h2>
+        Sign Up <span class="signup-green">!</span>
+      </h2>
+      <p>Let's get started with your 30 day free trial</p>
+
+      <div class="google-button-container">
+        <button type="button" routerLink="/dashboard" class="btn--google">
+          <svg-icon src="assets/icons/google-logo.svg"></svg-icon>
+          <span>Log in with Google</span>
+        </button>
+      </div>
+
+      <div class="signup-form-head-or-ruler">
+        <span class="signup-form-head-or-ruler-line"></span>
+        <p>or</p>
+        <span class="signup-form-head-or-ruler-line"></span>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="dense-4 full">
+        <mat-label>Email address</mat-label>
+        <input matInput formControlName="email" required >
+        @if (formControls['email'].errors?.['email']) {
+          <mat-error class="error">Please enter a valid email address</mat-error>
+        }
+        @if (formControls['email'].errors?.['required']) {
+          <mat-error class="dense-6 error">Email is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="dense-4 full">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required>
+        @if (formControls['username'].errors?.['required']) {
+          <mat-error class="error">Username is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="dense-4 full">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" required>
+        @if (formControls['password'].errors?.['required']) {
+          <mat-error class="error">Password is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="dense-4 full">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput formControlName="confirmPassword" required>
+        @if (formControls['confirmPassword'].errors?.['required']) {
+          <mat-error class="error">Confirm Password is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <span class="form-text">Use 8 or more characters with a mix of letters, numbers & symbols.</span>
+
+      <span class="accept-term">
+        <mat-checkbox formControlName="acceptTerms"></mat-checkbox>
+        I Accept the&nbsp;<a routerLink="#">Terms </a>
+      </span>
+    </div>
+
+    <button class="btn btn--green center-text" type="submit">
+      Sign up
+    </button>
+    <div *ngIf="signUpFailed">
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+
+    <div class="signin-link">
+      Already have an Account? <a routerLink="/auth/sign-in">Sign in</a>
+    </div>
+  </div>
+</form>
+</div>

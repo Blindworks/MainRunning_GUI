@@ -11,6 +11,12 @@ export const routes: Routes = [
     providers: [importProvidersFrom(HttpClientModule), importProvidersFrom(AngularSvgIconModule.forRoot())]
   },
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./authentication/auth.routes').then((x) => x.AuthRoutes),
+    providers: [importProvidersFrom(HttpClientModule), importProvidersFrom(AngularSvgIconModule.forRoot())]
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'runs'

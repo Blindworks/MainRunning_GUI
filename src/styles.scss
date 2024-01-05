@@ -97,9 +97,18 @@ $MainRunningGUI-theme: mat.define-light-theme((
   &:hover {
     opacity: 0.8;
     filter: brightness(0.8);
-    transform: translateY(-2px);
   }
   &:disabled {
     cursor: no-drop;
   }
 }
+
+.dense-4 {
+  @include mat.all-component-densities(-4);
+}
+
+.dense-6 {
+  @include mat.all-component-densities(-6);
+}
+
+
