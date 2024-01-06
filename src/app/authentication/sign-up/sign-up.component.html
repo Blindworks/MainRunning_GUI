@@ -65,12 +65,15 @@
       </span>
     </div>
 
+    <div *ngIf="signUpFailed" class="error-message">
+      <span>Signup failed!</span>
+      <span>{{ errorMessage }}</span>
+    </div>
+
     <button class="btn btn--green center-text" type="submit">
       Sign up
     </button>
-    <div *ngIf="signUpFailed">
-      Signup failed!<br />{{ errorMessage }}
-    </div>
+
 
     <div class="signin-link">
       Already have an Account? <a routerLink="/auth/sign-in">Sign in</a>

@@ -6,6 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import {NgIf} from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {RouterLink} from '@angular/router';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,7 +23,7 @@ export class SignUpComponent implements OnInit{
   profileForm!: FormGroup;
   submitted = false;
 
-  constructor(//private authService: AuthService,
+  constructor(private authService: AuthService,
               private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -42,10 +43,10 @@ export class SignUpComponent implements OnInit{
   onSubmit(): void {
     this.submitted = true;
 
-    /*this.authService.register(this.profileForm.get("username").value,
-      this.profileForm.get("email").value,
-      this.profileForm.get("password").value,
-      this.profileForm.get("confirmPassword").value).subscribe({
+    this.authService.register(this.profileForm.get("username")?.value,
+      this.profileForm.get("email")?.value,
+      this.profileForm.get("password")?.value,
+      this.profileForm.get("confirmPassword")?.value).subscribe({
       next: data => {
         console.log(data);
       },
@@ -53,6 +54,6 @@ export class SignUpComponent implements OnInit{
         this.signUpFailed = true;
         this.errorMessage = err.error.errors;
       }
-    })*/
+    })
   }
 }

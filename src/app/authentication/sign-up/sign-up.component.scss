@@ -104,8 +104,16 @@
   width: 100%;
 }
 
-.error {
-  margin-top: -5px;
-  font-size: 10px;
+.error-message {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #F44336;
+  border-radius: 5px;
+  text-align: center;
+  color: #F44336;
+  font-weight: 600;
+  padding: 5px;
 }
 
