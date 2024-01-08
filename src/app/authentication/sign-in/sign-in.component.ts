@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {RouterLink} from '@angular/router';
 import {SvgIconComponent} from 'angular-svg-icon';
 import {AuthService} from '../service/auth.service';
+import {StorageService} from '../service/storage.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -29,8 +30,11 @@ export class SignInComponent implements OnInit {
   errorMessage  = '';
 
   loginForm!: FormGroup;
+  loggedIn: boolean = false;
+  roles: string[] = [];
 
   constructor(private authService: AuthService,
+              private storageService: StorageService,
               private formBuilder: FormBuilder) {
   }
 
@@ -40,6 +44,11 @@ export class SignInComponent implements OnInit {
       password: ['', Validators.required],
       rememberMe: ['']
     });
+
+    if(this.storageService.isLoggedIn()) {
+      this.loggedIn = true;
+      this.roles = this.storageService.getUser().getRole();
+    }
   }
 
   get formControls() {
@@ -53,6 +62,11 @@ export class SignInComponent implements OnInit {
         this.signInFailed = false;
         this.errorMessage = "";
         console.log(data);
+        this.storageService.saveUser(data);
+
+        this.loggedIn = true;
+        this.roles = this.storageService.getUser().roles;
+        window.location.reload();
       },
       error: err => {
         this.signInFailed = true;
