@@ -3,9 +3,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {NgIf} from '@angular/common';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 import {SvgIconComponent} from 'angular-svg-icon';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -29,7 +30,8 @@ export class SignInComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private authService: AuthService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -45,6 +47,17 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    this.authService.login(this.loginForm.get("username")?.value,
+      this.loginForm.get("password")?.value).subscribe({
+      next: data => {
+        this.signInFailed = false;
+        this.errorMessage = "";
+        console.log(data);
+      },
+      error: err => {
+        this.signInFailed = true;
+        this.errorMessage = err.error.errors;
+      }
+    })
   }
 }
