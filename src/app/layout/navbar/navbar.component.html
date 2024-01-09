@@ -25,7 +25,8 @@
       <button class="btn--add" matTooltip="Upload run" routerLink="/runs/run-upload">+</button>
       <img src="https://avatars.githubusercontent.com/u/26135050" class="profile-menu-avatar" alt="profile_picture" [matMenuTriggerFor]="profile_menu">
       <mat-menu #profile_menu="matMenu">
-        <button mat-menu-item routerLink="auth/sign-up">Sign Up</button>
+        <button mat-menu-item *ngIf="isLoggedIn" (click)="onClickLogout()">Sign Out</button>
+        <button mat-menu-item *ngIf="!isLoggedIn" routerLink="auth/sign-up">Sign In</button>
         <button mat-menu-item>Item 2</button>
       </mat-menu>
     </div>

@@ -47,7 +47,7 @@ export class SignInComponent implements OnInit {
 
     if(this.storageService.isLoggedIn()) {
       this.loggedIn = true;
-      this.roles = this.storageService.getUser().getRole();
+      this.roles = this.storageService.getUser().roles;
     }
   }
 
