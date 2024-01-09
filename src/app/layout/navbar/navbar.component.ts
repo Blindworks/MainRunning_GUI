@@ -6,6 +6,8 @@ import {RouterLink} from '@angular/router';
 import {StorageService} from '../../authentication/service/storage.service';
 import {NgIf} from '@angular/common';
 import {AuthService} from '../../authentication/service/auth.service';
+import {Subscription} from 'rxjs';
+import {EventBusService} from '../../authentication/service/event-bus.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,13 +25,19 @@ import {AuthService} from '../../authentication/service/auth.service';
 export class NavbarComponent implements OnInit {
 
   isLoggedIn: boolean = false;
+  eventBusSub?: Subscription;
 
   constructor(private storageService: StorageService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private eventBusService: EventBusService) {
   }
 
   ngOnInit() {
     this.isLoggedIn = this.storageService.isLoggedIn();
+
+    this.eventBusSub = this.eventBusService.on('logout', () => {
+      this.onClickLogout();
+    });
   }
 
   onClickLogout() {
