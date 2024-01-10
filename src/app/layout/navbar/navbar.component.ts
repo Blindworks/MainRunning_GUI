@@ -33,7 +33,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.storageService.isLoggedIn();
+    if(this.storageService.getToken()) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.onClickLogout();
@@ -41,16 +45,8 @@ export class NavbarComponent implements OnInit {
   }
 
   onClickLogout() {
-    this.authService.logout().subscribe({
-      next: res => {
-        console.log(res);
-        this.storageService.clean();
+    this.storageService.clean();
 
-        window.location.reload();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+    window.location.reload();
   }
 }

@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
       rememberMe: ['']
     });
 
-    if(this.storageService.isLoggedIn()) {
+    if(this.storageService.getToken()) {
       this.loggedIn = true;
       this.roles = this.storageService.getUser().roles;
     }
@@ -59,19 +59,22 @@ export class SignInComponent implements OnInit {
     this.authService.login(this.loginForm.get("username")?.value,
       this.loginForm.get("password")?.value).subscribe({
       next: data => {
-        this.signInFailed = false;
-        this.errorMessage = "";
-        console.log(data);
+        this.storageService.saveToken(data.token);
         this.storageService.saveUser(data);
 
+        this.signInFailed = false;
         this.loggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        window.location.reload();
+        this.reloadPage();
       },
       error: err => {
         this.signInFailed = true;
         this.errorMessage = err.error.errors;
       }
     })
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 }

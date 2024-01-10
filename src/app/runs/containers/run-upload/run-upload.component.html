@@ -5,30 +5,37 @@
     <div class="description">
       <div class="description-header">Upload your run</div>
       <div class="description-subheader">The file format mus be .tcx</div>
+      <div class="description-errors">{{ message }}</div>
       <div class="description-buttons">
 
-        <input style="display: none" type="file" (change)="onChange($event)" #hiddenfileinput>
+        <input style="display: none" type="file" accept=".tcx" (change)="selectFile($event)" #hiddenfileinput>
 
-        <button class="btn btn--green center-text" *ngIf="status === 'initial'" (click)="hiddenfileinput.click()">
+        <button class="btn btn--green center-text" *ngIf="!currentFile" (click)="hiddenfileinput.click()">
           Choose file ...
         </button>
-        <button class="btn btn--green center-text" *ngIf="status === 'selected'" (click)="onClickUploadFile()">
+        <button class="btn btn--green center-text" *ngIf="currentFile" (click)="onClickUploadFile()">
           Upload file
         </button>
         <button class="btn btn--grey center-text" type="reset">
           Cancel
         </button>
       </div>
-      <div class="description-buttons">
-        <section [ngSwitch]="status">
-          <p *ngSwitchCase="'initial'">⏳ INIT...</p>
-          <p *ngSwitchCase="'selected'">⏳ SELECTED...</p>
-          <p *ngSwitchCase="'uploading'">⏳ Uploading...</p>
-          <p *ngSwitchCase="'success'">✅ Done!</p>
-          <p *ngSwitchCase="'fail'">❌ Error!</p>
-          <p *ngSwitchDefault>😶 Waiting to upload...</p>
-        </section>
-      </div>
+
+      @if (progress) {
+        <div class="progress my-3">
+          <div
+            class="progress-bar progress-bar-info"
+            role="progressbar"
+            attr.aria-valuenow="{{ progress }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{ width: progress + '%' }"
+          >
+            {{ progress }}%
+          </div>
+        </div>
+      }
+
     </div>
   </div>
 </div>
